@@ -14,14 +14,14 @@ The space complexity is O(1) for the output list since we are allowed to return 
 
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        result = [1] * n
+        n = len(nums) # calculate len of list
+        result = [1] * n  # result is initialized to a list with all elements set to 1
 
         # Calculate the left product of each element
         left_product = 1
         for i in range(n):
-            result[i] *= left_product
-            left_product *= nums[i]
+            result[i] *= left_product  # Set the current element of the result list to the product of all elements to its left
+            left_product *= nums[i]  #updated to include the current element
 
         # Calculate the right product of each element and update the result list
         right_product = 1
