@@ -14,18 +14,17 @@ The space complexity is O(n), where n is the number of elements in the input arr
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        num_set = set(nums)
-        max_length = 0
+        numset = set(nums)
+        longest = 0
 
-        for num in num_set:
-            if num - 1 not in num_set:
-                current_num = num
-                current_length = 1
+        for n in numset:
+            if (n-1) not in numset:
+                length = 1
+                while (n+length) in numset:
+                    length += 1
+                longest=max(length, longest)
+        return longest
 
-                while current_num + 1 in num_set:
-                    current_num += 1
-                    current_length += 1
-
-                max_length = max(max_length, current_length)
-
-        return max_length
+# put numbers in set to element any duplicates
+# check if the number we are reading in the set has the number to the left, if it does 
+# that means it isnt the start of the sequence
