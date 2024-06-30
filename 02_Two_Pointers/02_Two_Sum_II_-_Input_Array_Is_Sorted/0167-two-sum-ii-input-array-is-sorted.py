@@ -19,12 +19,13 @@ class Solution:
         while left < right:
             current_sum = numbers[left] + numbers[right]
 
-            if current_sum == target:
-                return [left + 1, right + 1]
-            elif current_sum < target:
+            if current_sum < target:
                 left += 1
+                return [left + 1, right + 1]
+            elif current_sum > target:
+                right += 1
             else:
-                right -= 1
+                return [left + 1, right + 1] #since index starts at 1
 
         # No solution found
         return [-1, -1]
