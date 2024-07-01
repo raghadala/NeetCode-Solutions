@@ -11,6 +11,22 @@ Space Complexity:
 The space complexity is O(k), where k is the maximum number of distinct characters allowed in the input string 's'. In the worst case, the entire string can have k distinct characters, so the dictionary storing the character frequencies in the window would have k elements.
 """
 
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        count = {}
+        l = 0
+        maxf = 0
+        for r in range(len(s)):
+            count[s[r]] = 1 + count.get(s[r], 0)
+            maxf = max(maxf, count[s[r]])
+
+            if (r - l + 1) - maxf > k:  #if greater, cant replace make all char the same with k replacements 
+                count[s[l]] -= 1   #minus in dictionary
+                l += 1
+
+        return (r - l + 1)  # return size of window
+
+
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
