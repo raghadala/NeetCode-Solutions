@@ -11,7 +11,38 @@ Space Complexity:
 The space complexity is O(n), where n is the length of the input string 's'. In the worst case, the stack could store all characters of the input string.
 """
 
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        Map = {")": "(", "]": "[", "}": "{"}
 
+        for c in s:
+            if c in Map:
+                if stack and stack[-1] == Map[c]:
+                    stack.pop()
+                else:
+                    return False
+            
+            else:
+                stack.append()
+        
+        return True if not stack else False
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        Map = {")": "(", "]": "[", "}": "{"}
+        stack = []
+
+        for c in s:
+            if c not in Map: # c is an opening bracket
+                stack.append(c)
+                continue  #move to next character
+            if not stack or stack[-1] != Map[c]:  #if empty or top of stack doesnt match opening bracket
+                return False
+            stack.pop()  #pop top element as it matches closing paren
+
+        return not stack   # if stack is empty return true otherwise false
+    
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
@@ -27,4 +58,4 @@ class Solution:
             else:
                 return False
 
-        return not stack
+        return not stack  
