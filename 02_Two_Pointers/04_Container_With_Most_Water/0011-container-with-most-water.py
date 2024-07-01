@@ -18,7 +18,7 @@ class Solution:
         res = 0
 
         while l < r:
-            res = max(res, min(heights[l], heights[r]) * (r - l))
+            res = max(res, min(heights[l], heights[r]) * (r - l)) #take shortest height
             if heights[l] < heights[r]:
                 l += 1
             else:
