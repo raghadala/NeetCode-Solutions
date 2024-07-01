@@ -13,17 +13,15 @@ The space complexity is O(1) since we are not using any additional data structur
 
 
 class Solution:
-    def maxArea(self, height: List[int]) -> int:
-        left, right = 0, len(height) - 1
-        max_area = 0
+    def maxArea(self, heights: List[int]) -> int:
+        l, r = 0, len(heights) - 1
+        res = 0
 
-        while left < right:
-            current_area = min(height[left], height[right]) * (right - left)
-            max_area = max(max_area, current_area)
-
-            if height[left] < height[right]:
-                left += 1
+        while l < r:
+            res = max(res, min(heights[l], heights[r]) * (r - l))
+            if heights[l] < heights[r]:
+                l += 1
             else:
-                right -= 1
-
-        return max_area
+                r -= 1
+            
+        return res
