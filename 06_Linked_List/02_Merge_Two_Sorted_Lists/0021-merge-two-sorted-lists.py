@@ -19,22 +19,23 @@ The space complexity is O(1), as no extra space is used other than a few variabl
 
 
 class Solution:
-    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        dummy = ListNode()
-        current = dummy
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode() #helps return the head starts at 0
+        current = dummy 
 
-        while l1 and l2:
-            if l1.val < l2.val:
-                current.next = l1
-                l1 = l1.next
+        while list1 and list2: #nonempty
+            if list1.val <= list2.val:
+                current.next= list1
+                list1 = list1.next #update list pointer
             else:
-                current.next = l2
-                l2 = l2.next
-            current = current.next
+                current.next = list2
+                list2 = list2.next
+            current = current.next  #update curr pointer
 
-        if l1:
-            current.next = l1
-        elif l2:
-            current.next = l2
-
+        #one list is empty
+        if list1:
+            current.next = list1
+        elif list2:
+            current.next = list2
+        
         return dummy.next
