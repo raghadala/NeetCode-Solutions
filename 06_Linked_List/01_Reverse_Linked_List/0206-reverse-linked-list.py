@@ -20,13 +20,11 @@ The space complexity is O(1), as no extra space is used other than a few variabl
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        prev = None
-        current = head
+        prev, curr = None, head
 
-        while current:
-            next_node = current.next
-            current.next = prev
-            prev = current
-            current = next_node
-
-        return prev
+        while curr:
+            temp = curr.next   # Store the next node in the original list
+            curr.next = prev   # Reverse the pointer to point backwards
+            prev = curr        # Move `prev` pointer to current node
+            curr = temp        # Move `curr` pointer to next node in the original list
+        return prev            # `prev` now points to the new head of the reversed list
