@@ -14,15 +14,18 @@ The space complexity is O(1), as no extra space is used other than a few variabl
 
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        left, right = 1, max(piles)
+        l, r = 1, max(piles) #1 ban/hr and max ban/hr
+        res = r
 
-        while left < right:
-            mid = left + (right - left) // 2
-            hours = sum((pile + mid - 1) // mid for pile in piles)
+        while l <= r:
+            k = (l + r) // 2
 
-            if hours > h:
-                left = mid + 1
+            totalTime = 0
+            for p in piles:
+                totalTime += math.ceil(float(p) / k)
+            if totalTime <= h:
+                res = k
+                r = k - 1
             else:
-                right = mid
-
-        return left
+                l = k + 1
+        return res
