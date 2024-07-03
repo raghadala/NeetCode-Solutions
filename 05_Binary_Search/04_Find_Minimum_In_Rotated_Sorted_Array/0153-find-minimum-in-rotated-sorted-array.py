@@ -14,12 +14,26 @@ The space complexity is O(1), as no extra space is used other than a few variabl
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:
+        start,end = 0, len(nums)-1
+
+        while start < end:
+            mid = start + (end-start)//2
+
+            if nums[mid] > nums[end]:
+                start = mid + 1
+            else:
+                end = mid
+        
+        return nums[start]
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
         left, right = 0, len(nums) - 1
 
         while left < right:
             mid = left + (right - left) // 2
 
-            if nums[mid] > nums[right]:
+            if nums[mid] > nums[right]:  #min must be to the right
                 left = mid + 1
             else:
                 right = mid
