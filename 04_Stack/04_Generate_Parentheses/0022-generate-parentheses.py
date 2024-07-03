@@ -8,22 +8,28 @@ Time Complexity:
 The time complexity of this solution is O(4^n / sqrt(n)), where n is the number of pairs of parentheses. This is because each valid combination is a sequence of open and close parentheses of length 2n, and there are 2^(2n) such sequences. However, not all sequences are valid, and the Catalan number (4^n / sqrt(n)) bounds the number of valid combinations.
 
 Space Complexity:
-The space complexity is O(4^n / sqrt(n)) as well, as this is the maximum number of valid combinations that can be generated.
+The space complexity is O(4^n / sqrt(n)) * 2n call stack takes 2n open/close paren multiply by combinations
 """
 
 
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        def backtrack(s, open_count, close_count):
-            if len(s) == 2 * n:
-                result.append(s)
+        stack = [] #hold parentheses
+        res = []  #hold list of the output
+
+        def backtrack(openN, closedN):
+            if openN == closedN == n:
+                res.append("".join(stack)) #joins all the elements in the stack into a single string without any separator between them.
                 return
 
-            if open_count < n:
-                backtrack(s + "(", open_count + 1, close_count)
-            if close_count < open_count:
-                backtrack(s + ")", open_count, close_count + 1)
+            if openN < n:
+                stack.append("(")
+                backtrack(openN + 1, closedN) #continue building the sequence
+                stack.pop()  #undo the last step to try new combinations
+            if closedN < openN:
+                stack.append(")")
+                backtrack(openN, closedN + 1)
+                stack.pop()
 
-        result = []
-        backtrack("", 0, 0)
-        return result
+        backtrack(0, 0)
+        return res
