@@ -16,19 +16,17 @@ class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         stack = []
 
-        for token in tokens:
-            if token.isdigit() or (token[0] == "-" and token[1:].isdigit()):
-                stack.append(int(token))
+        for c in tokens:
+            if c == "+":
+                stack.append(stack.pop() + stack.pop())
+            elif c == "-":
+                a,b = stack.pop(), stack.pop()
+                stack.append(b-a)
+            elif c == "*":
+                stack.append(stack.pop()*stack.pop())
+            elif c == "/":
+                a,b = stack.pop(), stack.pop()
+                stack.append(int(b/a))
             else:
-                num2 = stack.pop()
-                num1 = stack.pop()
-                if token == "+":
-                    stack.append(num1 + num2)
-                elif token == "-":
-                    stack.append(num1 - num2)
-                elif token == "*":
-                    stack.append(num1 * num2)
-                elif token == "/":
-                    stack.append(int(num1 / num2))
-
+                stack.append(int(c))
         return stack[0]
