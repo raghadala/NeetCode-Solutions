@@ -14,14 +14,12 @@ The space complexity is O(n), where n is the number of elements in the input arr
 
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        stack = []
-        result = [0] * len(temperatures)
+        stack = []  
+        res = [0] * len(temperatures)
 
-        for i in range(len(temperatures) - 1, -1, -1):
-            while stack and temperatures[i] >= temperatures[stack[-1]]:
-                stack.pop()
-            if stack:
-                result[i] = stack[-1] - i
+        for i, temp in enumerate(temperatures):
+            while stack and temp > temperatures[stack[-1]]:
+                index = stack.pop()
+                res[index] = i - index
             stack.append(i)
-
-        return result
+        return res
