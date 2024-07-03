@@ -13,25 +13,25 @@ The space complexity is O(n), where n is the number of elements in the stack. Bo
 
 
 class MinStack:
+
     def __init__(self):
-        self.stack = []
-        self.min_stack = []
+        self.stack = [] #main stack that where all elements are pushed and popped
+        self.minstack = [] #keeps track of the min
+        
 
     def push(self, val: int) -> None:
         self.stack.append(val)
-        if not self.min_stack or val <= self.min_stack[-1]:
-            self.min_stack.append(val)
-
+        val = min(val,self.minstack[-1] if self.minstack else val) #calculate new min
+        self.minstack.append(val)
+        
     def pop(self) -> None:
-        if self.stack:
-            if self.stack[-1] == self.min_stack[-1]:
-                self.min_stack.pop()
-            self.stack.pop()
-
+        self.stack.pop()
+        self.minstack.pop()
+        
     def top(self) -> int:
-        if self.stack:
-            return self.stack[-1]
+        return self.stack[-1]
+        
 
     def getMin(self) -> int:
-        if self.min_stack:
-            return self.min_stack[-1]
+        return self.minstack[-1]
+        
