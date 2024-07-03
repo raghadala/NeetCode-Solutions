@@ -14,23 +14,24 @@ The space complexity is O(1), as no extra space is used other than a few variabl
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        left, right = 0, len(nums) - 1
+        l, r = 0, len(nums) - 1
 
-        while left <= right:
-            mid = left + (right - left) // 2
-
-            if nums[mid] == target:
+        while l <= r:
+            mid = (l + r) // 2
+            if target == nums[mid]:
                 return mid
 
-            if nums[left] <= nums[mid]:
-                if nums[left] <= target < nums[mid]:
-                    right = mid - 1
+            #left sorted portion
+            if nums[l] <= nums[mid]:
+                if target > nums[mid] or target < nums[l]:
+                    l = mid + 1
                 else:
-                    left = mid + 1
+                    r = mid - 1
+           
+            #right sorted portion        
             else:
-                if nums[mid] < target <= nums[right]:
-                    left = mid + 1
+                if target < nums[mid] or target > nums[r]:
+                    r = mid - 1
                 else:
-                    right = mid - 1
-
+                    l = mid + 1
         return -1
