@@ -27,4 +27,4 @@ class Solution:
         left_depth = self.maxDepth(root.left)
         right_depth = self.maxDepth(root.right)
 
-        return max(left_depth, right_depth) + 1
+        return max(left_depth, right_depth) + 1  #add 1 to account for current node
