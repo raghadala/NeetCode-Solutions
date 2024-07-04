@@ -20,6 +20,7 @@ The space complexity is O(1), as no extra space is used other than a few variabl
 
 class Solution:
     def reorderList(self, head: ListNode) -> None:
+        #checks if empty or has 2 elements
         if not head or not head.next or not head.next.next:
             return
 
@@ -31,7 +32,7 @@ class Solution:
 
         # Reverse the second half of the list
         prev, current = None, slow.next
-        slow.next = None
+        slow.next = None  #break list into half
         while current:
             next_node = current.next
             current.next = prev
@@ -39,7 +40,7 @@ class Solution:
             current = next_node
 
         # Merge the two halves alternately
-        p1, p2 = head, prev
+        p1, p2 = head, prev  #prev is set to head of second half
         while p2:
             next_p1, next_p2 = p1.next, p2.next
             p1.next = p2
