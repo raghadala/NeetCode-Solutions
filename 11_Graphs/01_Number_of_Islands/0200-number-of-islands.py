@@ -10,36 +10,28 @@ Time Complexity:
 Space Complexity:
 - The space complexity is O(m * n), where m is the number of rows and n is the number of columns in the grid. This is the maximum space required for the call stack during DFS traversal.
 """
-
+#we use dfs because its better for recursion bfs requires a queue which takes more space
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
-            return 0
+        row, col = len(grid), len(grid[0])
+        islands = 0 
 
-        rows, cols = len(grid), len(grid[0])
-        count = 0
-
-        def dfs(row, col):
-            if (
-                row < 0
-                or row >= rows
-                or col < 0
-                or col >= cols
-                or grid[row][col] == "0"
-            ):
-                return
-
-            grid[row][col] = "0"  # Mark the cell as visited
-            directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-
-            for dr, dc in directions:
-                dfs(row + dr, col + dc)
-
-        for i in range(rows):
-            for j in range(cols):
+        def dfs(i,j):  #check if out of bounds
+            if i < 0 or i >=row or j < 0 or j >= col or grid[i][j] != "1":
+                return 
+            else:   #check neighboring indices
+                grid[i][j] = "0"
+                dfs(i+1, j)
+                dfs(i,j+1)
+                dfs(i-1,j)
+                dfs(i,j-1)
+        
+        for i in range(row):
+            for j in range(col):
                 if grid[i][j] == "1":
-                    count += 1
-                    dfs(i, j)
-
-        return count
+                    dfs(i,j)
+                    islands += 1
+        
+        return islands
+        
