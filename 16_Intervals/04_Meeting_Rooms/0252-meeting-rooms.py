@@ -17,9 +17,11 @@ class Solution:
         if not intervals:
             return True
 
+        # Sort intervals by their start times (first element of each interval)
         intervals.sort(key=lambda x: x[0])
 
         for i in range(1, len(intervals)):
+            # If the start time of the current interval is less than the end time of the previous 
             if intervals[i][0] < intervals[i - 1][1]:
                 return False
 
