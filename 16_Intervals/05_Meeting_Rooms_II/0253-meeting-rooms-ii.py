@@ -10,7 +10,25 @@ Time Complexity:
 Space Complexity:
 - The space complexity is O(n), as we store the end times in the min-heap.
 """
-
+class Solution:
+    def minMeetingRooms(self, intervals: List[Interval]) -> int:
+        if not intervals:
+            return []
+        
+        start = sorted([i.start for i in intervals])
+        end = sorted([i.end for i in intervals])
+        
+        res, rooms = 0,0
+        s, e = 0,0
+        while s < len(intervals):
+            if start[s] < end [s]:
+                s += 1
+                rooms += 1
+            else:
+                e += 1
+            res = max(res, rooms)
+        return res 
+        
 import heapq
 
 
