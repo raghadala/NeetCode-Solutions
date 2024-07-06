@@ -13,29 +13,36 @@ Space Complexity:
 - The space complexity is O(numCourses + len(prerequisites)), where we store the graph using a dictionary and maintain a set for visited nodes.
 """
 
-
+#if theres a cycle, return false
+# each course is a node and an edge is a prerequesite
+# key is course and value is list of prereq
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        graph = {i: [] for i in range(numCourses)}
-        in_degree = [0] * numCourses
+        pre = defaultdict(list)  #create adjacency list, each course maps to its prereq
+        #store graph representation of prerequisites
+        for course, p in prerequisites:
+            pre[course].append(p)  #add prereq to course
+        
+        taken = set()
 
-        # Construct the graph and count in-degrees
-        for course, prereq in prerequisites:
-            graph[prereq].append(course)
-            in_degree[course] += 1
+        def dfs(course):
+            if not pre[course]:  # no prereqs
+                return True
+            
+            if course in taken:  #revisited node
+                return False
+            
+            else:
+                taken.add(course)
 
-        # Initialize a queue with nodes having in-degree zero
-        queue = collections.deque(
-            [course for course, degree in enumerate(in_degree) if degree == 0]
-        )
+            for p in pre[course]:  #iterate through prereqs for course
+                if not dfs(p): return False  #if prereqs cant be complete, false
+            
+            pre[course] = []  #after processing, set to empty and that satisfied
+            return True
+        
+        for course in range(numCourses):
+            if not dfs(course):  #if course cant be completed
+                return False
 
-        # Perform topological sorting and update in-degrees
-        while queue:
-            node = queue.popleft()
-            for neighbor in graph[node]:
-                in_degree[neighbor] -= 1
-                if in_degree[neighbor] == 0:
-                    queue.append(neighbor)
-
-        # If any course has in-degree greater than zero, there's a cycle
-        return all(degree == 0 for degree in in_degree)
+        return True
