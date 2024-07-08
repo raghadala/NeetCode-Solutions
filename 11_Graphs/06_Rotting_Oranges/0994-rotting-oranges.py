@@ -20,7 +20,7 @@ class Solution:
         
         rows, cols = len(grid), len(grid[0])
         fresh = 0
-        rotten = deque()
+        rotten = deque()  #queue is good for processing all currently rotten oranges before moving to the next minute
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)] # possible adjacent cells
 
         for i in range(rows):
