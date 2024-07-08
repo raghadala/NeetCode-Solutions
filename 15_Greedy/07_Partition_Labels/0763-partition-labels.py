@@ -23,7 +23,7 @@ class Solution:
         start, end = 0, 0
 
         for i, char in enumerate(s):
-            end = max(end, last_index[char])
+            end = max(end, last_index[char])  #ensures that the current partition includes all occurrences of the characters seen so far.
 
             if i == end:
                 result.append(end - start + 1)
