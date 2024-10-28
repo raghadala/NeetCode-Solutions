@@ -17,16 +17,9 @@ class Solution:
         if len(s) != len(t):
             return False
 
-        char_frequency = {}
+        countS, countT = {}, {}
 
-        # Build character frequency map for string s
-        for char in s:
-            char_frequency[char] = char_frequency.get(char, 0) + 1
-
-        # Compare with string t
-        for char in t:
-            if char not in char_frequency or char_frequency[char] == 0:
-                return False
-            char_frequency[char] -= 1
-
-        return True
+        for i in range(len(s)):
+            countS[s[i]] = 1 + countS.get(s[i], 0)
+            countT[t[i]] = 1 + countT.get(t[i], 0)
+        return countS == countT
