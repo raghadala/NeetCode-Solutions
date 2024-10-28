@@ -16,15 +16,18 @@ class Solution:
     def isPalindrome(self, s: str) -> bool:
         left, right = 0, len(s) - 1
 
+        # check if not alphanumeric, if it is not move onto the next letter
         while left < right:
             while left < right and not s[left].isalnum(): 
                 left += 1
             while left < right and not s[right].isalnum():
                 right -= 1
 
+            # check if they equal eachother
             if s[left].lower() != s[right].lower():
                 return False
 
+            # increment pointers
             left += 1
             right -= 1
 
