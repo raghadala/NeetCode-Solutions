@@ -20,6 +20,8 @@ class Solution:
         countS, countT = {}, {}
 
         for i in range(len(s)):
+            # access ith element and get the value its at right now, then add 1 to it if it exists else 0
             countS[s[i]] = 1 + countS.get(s[i], 0)
             countT[t[i]] = 1 + countT.get(t[i], 0)
+        # return True if count is the same
         return countS == countT
