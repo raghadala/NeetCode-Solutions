@@ -22,4 +22,6 @@ class Solution:
                 # Retrieves the index of the number that was seen before, plus 
                 # represents the current index of n in the loop.
                 return [prevMap[diff], i]
+
+            # store key and index if not found
             prevMap[n] = i
