@@ -19,5 +19,7 @@ class Solution:
         for i, n in enumerate(nums):
             diff = target - n
             if diff in prevMap:
+                # Retrieves the index of the number that was seen before, plus 
+                # represents the current index of n in the loop.
                 return [prevMap[diff], i]
             prevMap[n] = i
