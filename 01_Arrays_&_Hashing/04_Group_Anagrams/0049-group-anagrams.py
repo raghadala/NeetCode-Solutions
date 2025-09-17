@@ -24,3 +24,15 @@ class Solution:
                 anagrams_map[sorted_word] = [word]
 
         return list(anagrams_map.values())
+
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anag = defaultdict(list)
+
+        for word in strs:
+            sortedword = "".join(sorted(word))
+            anag[sortedword].append(word) 
+        return list(anag.values())
+        
+
