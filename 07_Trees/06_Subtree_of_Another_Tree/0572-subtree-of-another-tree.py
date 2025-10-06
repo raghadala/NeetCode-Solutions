@@ -18,28 +18,13 @@ The space complexity is O(h), where h is the height of the main tree. In the wor
 #         self.left = left
 #         self.right = right
 
-
-class Solution:
-    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
-        if not s:
-            return False
-        if self.isSameTree(s, t):
-            return True
-        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
-
-    def isSameTree(self, p, q):
-        if not p and not q:
-            return True
-        if not p or not q or p.val != q.val:
-            return False
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-
 class Solution:   
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         if not root:
             return False
         if self.isSameTree(root, subRoot):
             return True
+        # Checks if subRoot is a subtree starting anywhere in the left child of root
         return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
         
 
@@ -51,4 +36,19 @@ class Solution:
         return self.isSameTree(q.left, p.left) and self.isSameTree(q.right, p.right)
        
 
+class Solution:
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        if not s:
+            return False
+        if self.isSameTree(s, t):
+            return True
+        
+        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t) 
+
+    def isSameTree(self, p, q):
+        if not p and not q:
+            return True
+        if not p or not q or p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 
