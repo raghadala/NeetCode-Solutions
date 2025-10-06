@@ -22,7 +22,7 @@ class Solution:
 
         for i in range(1, len(intervals)):
             # If the start time of the current interval is less than the end time of the previous 
-            if intervals[i][0] < intervals[i - 1][1]:
+            if intervals[i].start < intervals[i - 1].end:
                 return False
 
         return True
