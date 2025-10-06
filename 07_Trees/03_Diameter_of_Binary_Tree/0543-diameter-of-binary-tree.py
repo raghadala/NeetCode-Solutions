@@ -18,14 +18,6 @@ The space complexity is O(h), where h is the height of the binary tree. In the w
 #         self.left = left
 #         self.right = right
 
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
 class Solution(object):
     def diameterOfBinaryTree(self, root):
         # Define a recursive function to calculate the diameter
@@ -50,4 +42,5 @@ class Solution(object):
         diameter(root, res)
         # Return the maximum diameter encountered
         return res[0]
+
 
