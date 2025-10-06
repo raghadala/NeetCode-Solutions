@@ -27,10 +27,11 @@ class Solution:
         fast = head.next
 
         while slow != fast:
-            if not fast or not fast.next:
+            if not fast or not fast.next: #If fast or fast.next becomes None, it means the list ended
                 return False
             slow = slow.next
             fast = fast.next.next
 
         return True
+
 
