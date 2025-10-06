@@ -22,8 +22,8 @@ class Solution:
                 profit = prices[r] - prices[l]
                 res = max(res, profit)
             else:
-                l = r
-            r+=1
+                l = r # r<=l, move to r position and increment r
+            r+=1 # move to next
         return res
 
 #greedy approach (makes the locally optimal choice at each step with the hope of finding a global max)
@@ -37,6 +37,7 @@ class Solution:
                 lowest = price
             res = max(res, price - lowest)
         return res
+
 
 
 
