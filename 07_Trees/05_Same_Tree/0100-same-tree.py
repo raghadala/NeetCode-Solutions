@@ -21,8 +21,9 @@ The space complexity is O(h), where h is the height of the binary tree. In the w
 
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
-        if not p and not q:
+        if not p and not q: # if p and q are empty
             return True
-        if not p or not q or p.val != q.val:
+        if not p or not q or p.val != q.val: # if p or q are empty or values arent the same
             return False
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
