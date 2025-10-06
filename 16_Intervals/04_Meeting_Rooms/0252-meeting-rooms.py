@@ -18,7 +18,7 @@ class Solution:
             return True
 
         # Sort intervals by their start times (first element of each interval)
-        intervals.sort(key=lambda x: x[0])
+        intervals.sort(key=lambda x: x.start)
 
         for i in range(1, len(intervals)):
             # If the start time of the current interval is less than the end time of the previous 
@@ -29,7 +29,7 @@ class Solution:
 
 class Solution:
     def canAttendMeetings(self, intervals: List[Interval]) -> bool:
-        intervals.sort(key=lambda x:x[0])
+        intervals.sort(key=lambda x:x.start)
 
         for i in range(1,len(intervals)):
             i1 = intervals[i]
