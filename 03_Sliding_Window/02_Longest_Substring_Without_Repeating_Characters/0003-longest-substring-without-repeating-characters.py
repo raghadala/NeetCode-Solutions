@@ -42,4 +42,7 @@ class Solution:
             charSet.add(s[r])
             res = max(res, r - l + 1)
         return res
+# If a new character is a duplicate, we shrink the window from the left until it’s unique. 
+# At each step, we update the maximum length of the window. The result is the length of the 
+# longest substring without repeating characters.
 
