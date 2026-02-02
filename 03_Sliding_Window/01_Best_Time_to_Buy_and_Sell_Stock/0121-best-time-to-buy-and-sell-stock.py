@@ -21,22 +21,13 @@ class Solution:
             if prices[l]<prices[r]:
                 profit = prices[r] - prices[l]
                 res = max(res, profit)
+
+            # if sell is lower than buy, we switch
             else:
                 l = r # r<=l, move to r position and increment r
             r+=1 # move to next
         return res
 
-#greedy approach (makes the locally optimal choice at each step with the hope of finding a global max)
-class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        res = 0
-        
-        lowest = prices[0]
-        for price in prices:
-            if price < lowest:
-                lowest = price
-            res = max(res, price - lowest)
-        return res
 
 
 
