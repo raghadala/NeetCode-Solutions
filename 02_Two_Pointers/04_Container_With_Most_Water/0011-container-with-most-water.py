@@ -19,9 +19,11 @@ class Solution:
 
         while l < r:
             res = max(res, min(heights[l], heights[r]) * (r - l)) #take shortest height
+            # move pointer with shorter height to maximize
             if heights[l] < heights[r]:
                 l += 1
             else:
                 r -= 1
             
         return res
+
