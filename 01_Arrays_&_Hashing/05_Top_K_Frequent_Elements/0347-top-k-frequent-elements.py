@@ -23,7 +23,7 @@ class Solution:
 
         min_heap = []
         for num, frequency in frequency_map.items():
-            heapq.heappush(min_heap, (frequency, num)) # heap order by first element which is frequency
+            heapq.heappush(min_heap, (frequency, num)) # flip order of freq, num because heap order by first element, we want frequency
             if len(min_heap) > k:
                 heapq.heappop(min_heap)
 
@@ -31,5 +31,6 @@ class Solution:
         for frequency, num in min_heap:
             result.append(num)
         return result
+
 
 
