@@ -32,7 +32,7 @@ class Solution:
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         charSet = set()
-        l = 0
+        l, r = 0, 0
         res = 0
 
         for r in range(len(s)):
@@ -45,4 +45,5 @@ class Solution:
 # If a new character is a duplicate, we shrink the window from the left until it’s unique. 
 # At each step, we update the maximum length of the window. The result is the length of the 
 # longest substring without repeating characters.
+
 
