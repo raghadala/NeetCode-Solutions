@@ -18,6 +18,7 @@ class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         frequency_map = {}
         for num in nums:
+            # Take the current count for num (or 0 if it doesn’t exist yet), then add 1
             frequency_map[num] = frequency_map.get(num, 0) + 1
 
         min_heap = []
@@ -27,3 +28,4 @@ class Solution:
                 heapq.heappop(min_heap)
 
         return [num for frequency, num in min_heap]
+
