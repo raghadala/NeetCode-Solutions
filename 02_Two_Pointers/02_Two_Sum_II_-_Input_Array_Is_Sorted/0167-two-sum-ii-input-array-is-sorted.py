@@ -21,7 +21,6 @@ class Solution:
 
             if current_sum < target:
                 left += 1
-                return [left + 1, right + 1]
             elif current_sum > target:
                 right += 1
             else:
@@ -29,3 +28,4 @@ class Solution:
 
         # No solution found
         return [-1, -1]
+
