@@ -9,6 +9,11 @@ The time complexity of this approach is O(n + k*log(n)), where n is the number o
 
 Space Complexity:
 The space complexity is O(n) because we need to store the frequency map of all elements in the input list. Additionally, the min-heap will also have a space complexity of O(n) in the worst case if all elements are unique.
+
+We first count how many times each number appears in the list using a dictionary. Then we use a min-heap to keep track of the k 
+numbers with the highest frequencies. For each number and its frequency, we push a tuple (frequency, number) into the heap, and 
+if the heap grows larger than k, we remove the smallest frequency. At the end, the heap contains the k most frequent numbers, so 
+we extract just the numbers and return them.
 """
 
 import heapq
@@ -31,6 +36,7 @@ class Solution:
         for frequency, num in min_heap:
             result.append(num)
         return result
+
 
 
 
