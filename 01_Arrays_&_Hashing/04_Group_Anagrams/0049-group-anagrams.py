@@ -31,8 +31,12 @@ class Solution:
         anag = defaultdict(list)
 
         for word in strs:
-            sortedword = "".join(sorted(word))
+            sortedword = "".join(sorted(word)) # sorted(word) orders alphabetically then makes a string again
             anag[sortedword].append(word) 
         return list(anag.values())
-        
+
+# We go through each word, sort its letters so all anagrams look the same, and use that as a 
+# key in a dictionary. Then we group all words with the same key together. At the end, we 
+# return all the groups of anagrams.
+
 
