@@ -18,6 +18,7 @@ class Solution:
 
         # check if not alphanumeric, if it is not move onto the next letter
         while left < right:
+            # move pointer until it reaches letter/number
             while left < right and not s[left].isalnum(): 
                 left += 1
             while left < right and not s[right].isalnum():
@@ -26,12 +27,14 @@ class Solution:
             # check if they equal eachother
             if s[left].lower() != s[right].lower():
                 return False
-
-            # increment pointers
-            left += 1
-            right -= 1
+                
+            # if they do move pointers
+            else:
+                left += 1
+                right -= 1
 
         return True
 
 # Inner loop incrementally moves left pointer to the right until it finds an 
 # alphanumeric character 
+
