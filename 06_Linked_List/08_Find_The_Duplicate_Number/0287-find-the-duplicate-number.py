@@ -31,3 +31,15 @@ class Solution:
             fast = nums[fast]
 
         return slow
+
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        seen = set()
+
+        # loop through every number in the array
+        for num in nums:
+            # if we've seen this number before, it's the duplicate
+            if num in seen:
+                return num
+            # first time seeing this number, add it to our set
+            seen.add(num)
